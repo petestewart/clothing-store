@@ -10,6 +10,6 @@ app = Flask(__name__)
 api = Api(app)
 create_routes(api=api)
 
-# Main entry point
+# main entry point
 if __name__ == '__main__':
     app.run(debug=True)
