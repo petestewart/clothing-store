@@ -30,3 +30,20 @@ class CartApi(Resource):
         # add new_item to cart
         user_cart.add(new_item)
         return user_cart.objects(), 201
+
+    def delete(self):
+        """Remove item(s) from cart"""
+        # parse item_id and amount from request body
+        parser.add_argument('item_id', type=str)
+        parser.add_argument('amount', type=int)
+        args = parser.parse_args()
+
+        # checks if item is in cart
+        cart_item_ids = [item['id'] for item in user_cart.objects()]
+        if args['item_id'] in cart_item_ids:
+            # item is in cart, call the cart's remove method
+            result = user_cart.remove(args['item_id'], args['amount'])
+            return result, 200
+
+        # otherwise let the user know nothing has been deleted
+        return 'Item not in cart', 400
