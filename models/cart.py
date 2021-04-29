@@ -1,14 +1,12 @@
 from flask_restful import Resource, fields, marshal_with
 
-from database.catalogitems import CATALOG_ITEMS
-
 
 class CartItem(dict):
     """Model for Cart Item"""
     def __init__(self, item):
         dict.__init__(self, id=item['id'], name=item['name'], price=item['price'], quantity=1)
 
-class Cart(Resource):
+class Cart():
     """Model for Cart"""
     def __init__(self):
         self.cart = []
