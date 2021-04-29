@@ -39,4 +39,8 @@ class Cart():
                     return self.cart
 
     def objects(self):
-        return self.cart
+        view_cart = []
+        for line in self.cart:
+            line["line_total"] = line["price"] * line["quantity"]
+            view_cart.append(line)
+        return view_cart
