@@ -3,7 +3,7 @@ from flask_restful import Resource, reqparse
 from models.cart import Cart
 from database.catalogitems import CATALOG_ITEMS
 
-user_cart = Cart()
+user_cart = Cart(8.9, 4)
 parser = reqparse.RequestParser()
 
 class CartApi(Resource):
