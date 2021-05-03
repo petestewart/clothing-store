@@ -1,6 +1,9 @@
+from services import cart_service, catalog_service
 import unittest
 
-from services import cart_service, catalog_service
+
+
+
 
 class CartTestCase(unittest.TestCase):
     """Catalog test case"""
@@ -17,7 +20,8 @@ class CartTestCase(unittest.TestCase):
 
     def test_when_valid_item_is_added_to_cart_and_no_quantity_is_specified_cart_is_returned_with_item(self):
         item = self.catalog[0]
-        res = cart_service.add_item_to_cart({'item_id': item['id'], 'quantity': None})
+        res = cart_service.add_item_to_cart(
+            {'item_id': item['id'], 'quantity': None})
         cart = res[0]
         line = cart[0]
         self.assertEqual(len(cart), 1)
@@ -27,12 +31,14 @@ class CartTestCase(unittest.TestCase):
     def test_when_invalid_item_is_added_to_empty_cart_error_is_thrown(self):
         item_id = len(self.catalog) + 100
         assert item_id not in [item['id'] for item in self.catalog]
-        res = cart_service.add_item_to_cart({'item_id': item_id, 'quantity': 1})
+        res = cart_service.add_item_to_cart(
+            {'item_id': item_id, 'quantity': 1})
         self.assertEqual(res[1], 404)
 
     def test_when_valid_item_is_added_to_cart_cart_reflects_quantity_added(self):
         item = self.catalog[0]
-        res = cart_service.add_item_to_cart({'item_id': item['id'], 'quantity': 5})
+        res = cart_service.add_item_to_cart(
+            {'item_id': item['id'], 'quantity': 5})
         cart = res[0]
         line = cart[0]
         self.assertEqual(len(cart), 1)
@@ -43,7 +49,8 @@ class CartTestCase(unittest.TestCase):
         item1 = self.catalog[0]
         item2 = self.catalog[1]
         cart_service.add_item_to_cart({'item_id': item1['id'], 'quantity': 5})
-        res = cart_service.add_item_to_cart({'item_id': item2['id'], 'quantity': 2})
+        res = cart_service.add_item_to_cart(
+            {'item_id': item2['id'], 'quantity': 2})
         cart = res[0]
         line1 = cart[0]
         line2 = cart[1]
@@ -57,8 +64,10 @@ class CartTestCase(unittest.TestCase):
         item1 = self.catalog[0]
         item2 = self.catalog[1]
         cart_service.add_item_to_cart({'item_id': item1['id'], 'quantity': 5})
-        cart1 = cart_service.add_item_to_cart({'item_id': item2['id'], 'quantity': 2})[0].copy()
-        res = cart_service.remove_items_from_cart({'item_id': item1['id'], 'quantity': None})
+        cart1 = cart_service.add_item_to_cart(
+            {'item_id': item2['id'], 'quantity': 2})[0].copy()
+        res = cart_service.remove_items_from_cart(
+            {'item_id': item1['id'], 'quantity': None})
         self.assertEqual(len(res[0]), 1)
         self.assertEqual(res[1], 200)
         self.assertNotEqual(cart1[0]['id'], item2['id'])
@@ -67,8 +76,10 @@ class CartTestCase(unittest.TestCase):
         item1 = self.catalog[0]
         item2 = self.catalog[1]
         cart_service.add_item_to_cart({'item_id': item1['id'], 'quantity': 5})
-        cart1 = cart_service.add_item_to_cart({'item_id': item2['id'], 'quantity': 2})[0].copy()
-        res = cart_service.remove_items_from_cart({'item_id': item1['id'], 'quantity': 3})
+        cart1 = cart_service.add_item_to_cart(
+            {'item_id': item2['id'], 'quantity': 2})[0].copy()
+        res = cart_service.remove_items_from_cart(
+            {'item_id': item1['id'], 'quantity': 3})
         self.assertEqual(len(res[0]), len(cart1))
         self.assertEqual(res[1], 200)
         self.assertEqual(cart1[0]['quantity'], 2)
@@ -104,7 +115,8 @@ class CartTestCase(unittest.TestCase):
         cart = cart_service.user_cart
         cart_service.add_item_to_cart({'item_id': item1['id'], 'quantity': 5})
         cart_service.add_item_to_cart({'item_id': item2['id'], 'quantity': 2})
-        expected_total_due = ((((item1['price'] * 5) + (item2['price'] * 2)) * ((cart.tax_rate / 100) + 1)) + cart.shipping_rate)
+        expected_total_due = ((((item1['price'] * 5) + (item2['price'] * 2))
+                              * ((cart.tax_rate / 100) + 1)) + cart.shipping_rate)
         res = cart_service.user_cart.totals_due()
         self.assertEqual(res['final_total'], expected_total_due)
 
@@ -123,5 +135,6 @@ class CartTestCase(unittest.TestCase):
         self.assertEqual(expected_line_total1, line_total1)
         self.assertEqual(expected_line_total2, line_total2)
 
-if __name__ == '__main__':
-    unittest.main()
+
+# if __name__ == '__main__':
+#     unittest.main()
