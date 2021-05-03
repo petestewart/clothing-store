@@ -14,7 +14,7 @@ Created with Python, Flask and Flask Restful.
 
 
 ## API documentation:
----
+
 [![Get](https://img.shields.io/badge/-GET-GREEN?style=flat-square)](#)
 **Get all items in catalog**
 
