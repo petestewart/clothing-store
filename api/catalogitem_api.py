@@ -1,6 +1,8 @@
 from flask_restful import Resource
 
-from models.catalogitems import CatalogItems
+from services import catalog_service
+
+# from models.catalogitems_model import CatalogItems
 
 
 class CatalogItemsApi(Resource):
@@ -8,7 +10,4 @@ class CatalogItemsApi(Resource):
 
     def get(self):
         """GET response method for all items in catalog"""
-        
-        catalog_items = CatalogItems()
-        output = catalog_items.objects()
-        return output, 200
+        return catalog_service.get_all_catalog_items()
