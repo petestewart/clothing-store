@@ -1,6 +1,8 @@
 # clothing-store
 
-A collection of APIs to interact with the catalog and shopping cart of a clothing store. Created with Python, Flask and Flask Restful.
+A collection of APIs to interact with the catalog and shopping cart of a clothing store. 
+
+Created with Python, Flask and Flask Restful.
 
 #### To start server:
 `python app.py`
