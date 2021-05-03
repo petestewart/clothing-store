@@ -93,6 +93,7 @@ Removes an item from the shopping cart and returns a list of the current items i
 
 #### Parameters:
 `item_id` (required) The id of the item from the store catalog intended to be removed from the cart.
+
 `quantity` The quantity of the item intended to be removed from the cart. If `quantity` is not supplied, the API will assume the entire quantity of the item should be removed from the cart.
 
 #### Body:
