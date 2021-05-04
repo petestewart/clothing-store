@@ -44,7 +44,46 @@ Returns a list of all items currently in the store catalog.
 
 Status: 200 OK
 ```
+---
 
+[![Get](https://img.shields.io/badge/-GET-GREEN?style=flat-square)](#) 
+**Get all items in cart with totals due**
+
+http://127.0.0.1:5000/cart
+
+Returns the contents of the shopping cart in a list called `items`, along with a `totals_due` object containing the calculated values for `total_items`, `subtotal`, `tax`, `shipping` and `final_total`.
+
+
+#### Response:
+```json
+{
+    "items": [
+        {
+            "id": "3",
+            "name": "long sleeve",
+            "price": 15.0,
+            "quantity": 6,
+            "line_total": 90.0
+        },
+        {
+            "id": "2",
+            "name": "shorts",
+            "price": 5.0,
+            "quantity": 6,
+            "line_total": 30.0
+        }
+    ],
+    "totals_due": {
+        "total_items": 12,
+        "subtotal": 120.0,
+        "tax": 10.68,
+        "shipping": 4,
+        "final_total": 134.68
+    }
+}
+
+Status: 200 OK
+```
 ---
 [![Post](https://img.shields.io/badge/-POST-yellow?style=flat-square)](#)
 **Add item to cart**
@@ -129,46 +168,7 @@ Removes an item from the shopping cart and returns a list of the current items i
 
 Status: 200 OK
 ```
----
 
-[![Get](https://img.shields.io/badge/-GET-GREEN?style=flat-square)](#) 
-**Get all items in cart with totals due**
-
-http://127.0.0.1:5000/cart
-
-Returns the contents of the shopping cart in a list called `items`, along with a `totals_due` object containing the calculated values for `total_items`, `subtotal`, `tax`, `shipping` and `final_total`.
-
-
-#### Response:
-```json
-{
-    "items": [
-        {
-            "id": "3",
-            "name": "long sleeve",
-            "price": 15.0,
-            "quantity": 6,
-            "line_total": 90.0
-        },
-        {
-            "id": "2",
-            "name": "shorts",
-            "price": 5.0,
-            "quantity": 6,
-            "line_total": 30.0
-        }
-    ],
-    "totals_due": {
-        "total_items": 12,
-        "subtotal": 120.0,
-        "tax": 10.68,
-        "shipping": 4,
-        "final_total": 134.68
-    }
-}
-
-Status: 200 OK
-```
 ---
 
 [![Delete](https://img.shields.io/badge/-DELETE-red?style=flat-square)](#)
