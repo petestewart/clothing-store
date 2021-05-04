@@ -41,6 +41,8 @@ Returns a list of all items currently in the store catalog.
         "price": 15.0
     }
 ]
+
+Status: 200 OK
 ```
 
 ---
@@ -82,6 +84,8 @@ Adds an item to the shopping cart and returns a list of the current items in the
         "line_total": 30.0
     }
 ]
+
+Status: 201 CREATED
 ```
 ---
 [![Patch](https://img.shields.io/badge/-PATCH-red?style=flat-square)](#) 
@@ -122,6 +126,8 @@ Removes an item from the shopping cart and returns a list of the current items i
         "line_total": 30.0
     }
 ]
+
+Status: 200 OK
 ```
 ---
 
@@ -160,6 +166,8 @@ Returns the contents of the shopping cart in a list called `items`, along with a
         "final_total": 134.68
     }
 }
+
+Status: 200 OK
 ```
 ---
 
@@ -173,5 +181,7 @@ Clears the contents of the cart and returns the empty cart.
 #### Response:
 ```json
 []
+
+Status: 200 OK
 ```
 
