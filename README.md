@@ -132,7 +132,7 @@ Status: 200 OK
 ---
 
 [![Get](https://img.shields.io/badge/-GET-GREEN?style=flat-square)](#) 
-**Get all items in cart**
+**Get all items in cart with totals due**
 
 http://127.0.0.1:5000/cart
 
